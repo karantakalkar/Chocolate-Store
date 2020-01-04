@@ -14,7 +14,7 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
-api.add_resource(Chocolate, '/chocolate/<int:id>')
+api.add_resource(Chocolate, '/chocolate/<string:name>')
 api.add_resource(ChocolateList, '/chocolates')
 
 

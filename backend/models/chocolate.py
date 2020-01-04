@@ -8,7 +8,7 @@ class ChocolateModel(db.Model):
     name = db.Column(db.String(80))
     price = db.Column(db.Float(precision=2))
 
-    def __init__(self, name, price, store_id):
+    def __init__(self, name, price):
         self.name = name
         self.price = price
 

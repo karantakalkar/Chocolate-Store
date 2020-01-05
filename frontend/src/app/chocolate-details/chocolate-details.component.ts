@@ -13,11 +13,17 @@ export class ChocolateDetailsComponent implements OnInit {
 
   chocolate;
   chocolates: Chocolate[];
+  id;
 
   addToCart(chocolate){
     window.alert('Your product has been added to the cart!');
     this.cartService.addToCart(chocolate);
   }
+  
+  assignChocolate(){
+    this.chocolate = this.chocolates[this.id];
+  }
+  
 
   constructor(
     private route: ActivatedRoute, 
@@ -27,10 +33,12 @@ export class ChocolateDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getChocolates()
-        .subscribe(chocolates => this.chocolates = chocolates);
+        .subscribe(chocolates => {this.chocolates = chocolates; this.chocolate = this.chocolates[this.id]});
     this.route.paramMap.subscribe(params => {
-      this.chocolate = this.chocolates[+params.get('productId')];
+      this.id = +params.get('productId');
+    
     });
+    
   }
 
 }

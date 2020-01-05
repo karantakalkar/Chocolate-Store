@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ChocolateListComponent } from './chocolate-list/chocolate-list.component';
 import { ChocolateDetailsComponent } from './chocolate-details/chocolate-details.component';
 import { CartComponent } from './cart/cart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CartComponent } from './cart/cart.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

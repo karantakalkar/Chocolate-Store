@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { products } from '../products';
+import { APIService } from '../api.service'
+import { Chocolate } from '../chocolate'
+
+
 
 @Component({
   selector: 'app-chocolate-list',
@@ -8,11 +11,17 @@ import { products } from '../products';
 })
 export class ChocolateListComponent implements OnInit {
 
-  products = products;
+  chocolates: Chocolate[];
 
-  constructor() { }
+  getChocolates(): void {
+    this.apiService.getChocolates()
+        .subscribe(chocolates => this.chocolates = chocolates);
+  }
+
+  constructor( private apiService: APIService) { }
 
   ngOnInit() {
+    this.getChocolates();
   }
 
 }

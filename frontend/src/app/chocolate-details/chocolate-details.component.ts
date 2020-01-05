@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { products } from '../products';
+import { APIService } from '../api.service'
 import { CartService } from '../cart.service';
+import { Chocolate } from '../chocolate'
 
 @Component({
   selector: 'app-chocolate-details',
@@ -11,18 +11,25 @@ import { CartService } from '../cart.service';
 })
 export class ChocolateDetailsComponent implements OnInit {
 
-  product;
+  chocolate;
+  chocolates: Chocolate[];
 
-  addToCart(product){
+  addToCart(chocolate){
     window.alert('Your product has been added to the cart!');
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(chocolate);
   }
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private cartService: CartService,
+    private apiService: APIService,
+    ) { }
 
   ngOnInit() {
+    this.apiService.getChocolates()
+        .subscribe(chocolates => this.chocolates = chocolates);
     this.route.paramMap.subscribe(params => {
-      this.product = products[+params.get('productId')];
+      this.chocolate = this.chocolates[+params.get('productId')];
     });
   }
 

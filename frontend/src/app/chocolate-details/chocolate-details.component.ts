@@ -35,7 +35,7 @@ export class ChocolateDetailsComponent implements OnInit {
     this.apiService.getChocolates()
         .subscribe(chocolates => {this.chocolates = chocolates; this.chocolate = this.chocolates[this.id]});
     this.route.paramMap.subscribe(params => {
-      this.id = +params.get('productId');
+      this.id = +params.get('chocolateId');
     
     });
     

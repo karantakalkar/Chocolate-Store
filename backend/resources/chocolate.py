@@ -56,3 +56,5 @@ class Chocolate(Resource):
 class ChocolateList(Resource):
     def get(self):
         return {'chocolates': list(map(lambda x: x.json(), ChocolateModel.query.all()))}
+    
+ 
